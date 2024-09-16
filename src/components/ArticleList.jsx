@@ -36,7 +36,6 @@ export const ArticleList = () => {
                     <div className="button-container">
                       <button className="button-style">To Article</button>
                     </div>
-
                     <div className="item-details">
                       <h3>{article.title}</h3>
                       <p>author: {article.author} </p>
