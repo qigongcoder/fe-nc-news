@@ -13,3 +13,9 @@ export const fetchArticles = (topic) => {
     return data;
   });
 };
+
+export const fetchArticleByID = (id) => {
+  return NewsApi.get(`/article/${id}`).then(({ data }) => {
+    return data;
+  });
+};

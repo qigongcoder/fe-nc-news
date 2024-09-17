@@ -1,6 +1,7 @@
 import "./ArticleList.css";
 import { fetchArticles } from "./api";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export const ArticleList = () => {
   const [articles, setArticles] = useState([]);
@@ -15,7 +16,7 @@ export const ArticleList = () => {
   }, []);
 
   return (
-    <>
+    <main>
       <h2>Article List</h2>
       {isLoading ? (
         <div id="loading">
@@ -27,20 +28,23 @@ export const ArticleList = () => {
             {articles.map((article) => {
               return (
                 <li className="article-card" key={article.article_id}>
-                  <div>
-                    <img
-                      className="article-image"
-                      src={article.article_img_url}
-                      alt={article.title}
-                    ></img>
-                    <div className="button-container">
-                      <button className="button-style">To Article</button>
-                    </div>
-                    <div className="item-details">
-                      <h3>{article.title}</h3>
-                      <p>author: {article.author} </p>
-                      <p>topc: {article.topic}</p>
-                    </div>
+                  <img
+                    className="article-image"
+                    src={article.article_img_url}
+                    alt={article.title}
+                  ></img>
+                  <div className="link-container">
+                    <Link
+                      to={`/article/${article.article_id}`}
+                      className="nav-link"
+                    >
+                      To Article
+                    </Link>
+                  </div>
+                  <div className="item-details">
+                    <h3>{article.title}</h3>
+                    <p>author: {article.author} </p>
+                    <p>topc: {article.topic}</p>
                   </div>
                 </li>
               );
@@ -48,6 +52,10 @@ export const ArticleList = () => {
           </ul>
         </div>
       )}
-    </>
+    </main>
   );
 };
+
+/*
+                      <button className="button-style">To Article</button>
+*/
