@@ -1,0 +1,28 @@
+#comments-list-wrapper {
+  display: inline-flex;
+}
+
+#comments-list-wrapper .comment-card {
+  display: inline-flex;
+  flex-direction: column;
+  border-style: outset;
+  border-width: 7px;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px;
+}
+
+#comments-list-wrapper .item-details {
+  width: 200px;
+  height: 200px;
+}
+
+#comments-list-wrapper .item-details {
+  width: 200px;
+  height: 200px;
+}
+
+#comments-list-wrapper .author {
+  font-weight: bold;
+  text-decoration: underline;
+}

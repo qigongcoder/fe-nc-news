@@ -55,7 +55,3 @@ export const ArticleList = () => {
     </main>
   );
 };
-
-/*
-                      <button className="button-style">To Article</button>
-*/
