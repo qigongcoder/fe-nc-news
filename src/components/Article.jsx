@@ -1,18 +1,19 @@
 import "./Article.css";
 import { fetchArticleByID } from "./api";
+import CommentsList from "./CommentsList";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 export const Article = () => {
   const [article, setArticle] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
   const { article_id } = useParams();
+  const [articleID, setArticleID] = useState(article_id);
 
   useEffect(() => {
     setIsLoading(true);
-    fetchArticleByID(article_id).then((article) => {
-      setArticle(article.article);
+    fetchArticleByID(articleID).then((article) => {
+      setArticle(article);
       setIsLoading(false);
     });
   }, []);
@@ -25,20 +26,23 @@ export const Article = () => {
           <h3>Loading</h3>
         </div>
       ) : (
-        <div id="article-wrapper">
-          <div className="article-card">
-            <img
-              className="article-image"
-              src={article.article_img_url}
-              alt={article.title}
-            ></img>
-            <div className="item-details">
-              <h3>{article.title}</h3>
-              <p>{article.body}</p>
-              <p>author: {article.author} </p>
-              <p>topc: {article.topic}</p>
+        <div>
+          <div id="article-wrapper">
+            <div className="article-card">
+              <img
+                className="article-image"
+                src={article.article_img_url}
+                alt={article.title}
+              ></img>
+              <div className="item-details">
+                <h3>{article.title}</h3>
+                <p>{article.body}</p>
+                <p>author: {article.author} </p>
+                <p>topc: {article.topic}</p>
+              </div>
             </div>
           </div>
+          <CommentsList articleID={articleID} />
         </div>
       )}
     </main>
