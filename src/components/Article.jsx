@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 export const Article = () => {
-  const [article, setArtcile] = useState([]);
+  const [article, setArticle] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const { article_id } = useParams();
@@ -12,7 +12,7 @@ export const Article = () => {
   useEffect(() => {
     setIsLoading(true);
     fetchArticleByID(article_id).then((article) => {
-      setArtcile(article.article);
+      setArticle(article.article);
       setIsLoading(false);
     });
   }, []);
