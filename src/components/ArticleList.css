@@ -1,4 +1,8 @@
-.article-card {
+#article-list-wrapper {
+  display: inline-flex;
+}
+
+#article-list-wrapper .article-card {
   display: inline-flex;
   flex-direction: column;
   border-style: outset;
@@ -8,23 +12,23 @@
   margin: 10px;
 }
 
-.article-image {
+#article-list-wrapper .article-image {
   width: 200px;
   height: 200px;
   padding: 10px;
 }
 
-.item-details {
+#article-list-wrapper .item-details {
   width: 200px;
   height: 200px;
 }
 
-.button-container {
+#article-list-wrapper .link-container {
   display: flex;
   justify-content: center;
 }
 
-.button-style {
+#article-list-wrapper .button-style {
   margin: 20px;
   padding: 15px;
 }
