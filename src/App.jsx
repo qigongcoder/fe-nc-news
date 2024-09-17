@@ -11,6 +11,10 @@ function App() {
       <Routes>
         <Route path="/" element={<ArticleList />}></Route>
         <Route path="/article/:article_id" element={<Article />}></Route>
+        <Route
+          path="/article/:article_id/:extension"
+          element={<Article />}
+        ></Route>
       </Routes>
     </div>
   );

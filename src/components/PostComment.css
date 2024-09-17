@@ -1,0 +1,7 @@
+nav {
+  display: inline-flex;
+}
+
+.nav-item {
+  margin: 10px;
+}

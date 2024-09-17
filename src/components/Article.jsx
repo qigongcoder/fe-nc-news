@@ -1,6 +1,7 @@
 import "./Article.css";
 import { fetchArticleByID } from "./api";
 import CommentsList from "./CommentsList";
+import PostComment from "./PostComment";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -8,8 +9,8 @@ export const Article = () => {
   const [article, setArticle] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const { article_id } = useParams();
+  const { extension } = useParams();
   const [articleID, setArticleID] = useState(article_id);
-
   useEffect(() => {
     setIsLoading(true);
     fetchArticleByID(articleID).then((article) => {
@@ -42,7 +43,11 @@ export const Article = () => {
               </div>
             </div>
           </div>
-          <CommentsList articleID={articleID} />
+          {extension != "comments" ? (
+            <CommentsList articleID={articleID} />
+          ) : (
+            <PostComment articleID={articleID} />
+          )}
         </div>
       )}
     </main>
