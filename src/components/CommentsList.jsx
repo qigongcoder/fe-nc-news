@@ -1,5 +1,5 @@
 import "./CommentsList.css";
-import { fetchComments } from "./api";
+import { fetchComments, deleteComment } from "./api";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -14,6 +14,12 @@ export default function CommentsList({ articleID }) {
       setIsLoading(false);
     });
   }, []);
+
+  const handleDeletePush = (comment_id) => {
+    deleteComment(comment_id).then(() => {
+      console.log("comment_deleted");
+    });
+  };
 
   return (
     <main>
@@ -36,6 +42,12 @@ export default function CommentsList({ articleID }) {
                   <div className="item-details">
                     <p className="author">author: {comment.author} </p>
                     <p>{comment.body}</p>
+                    <p>comment_id : {comment.comment_id}</p>
+                    <button
+                      onClick={() => handleDeletePush(comment.comment_id)}
+                    >
+                      delete me
+                    </button>
                   </div>
                 </li>
               );
