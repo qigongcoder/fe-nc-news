@@ -35,7 +35,7 @@ export const ArticleList = () => {
                   ></img>
                   <div className="link-container">
                     <Link
-                      to={`/article/${article.article_id}`}
+                      to={`/articles/${article.article_id}`}
                       className="nav-link"
                     >
                       To Article

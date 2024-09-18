@@ -10,9 +10,9 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<ArticleList />}></Route>
-        <Route path="/article/:article_id" element={<Article />}></Route>
+        <Route path="/articles/:article_id" element={<Article />}></Route>
         <Route
-          path="/article/:article_id/:extension"
+          path="/articles/:article_id/:extension"
           element={<Article />}
         ></Route>
       </Routes>

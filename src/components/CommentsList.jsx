@@ -19,7 +19,7 @@ export default function CommentsList({ articleID }) {
     <main>
       <nav>
         <h2 className="nav-item">Comments List</h2>
-        <Link to={`/article/${articleID}/comments`} className="nav-link">
+        <Link to={`/articles/${articleID}/comments`} className="nav-link">
           <h2 className="nav-item">Post a Comment</h2>
         </Link>
       </nav>
