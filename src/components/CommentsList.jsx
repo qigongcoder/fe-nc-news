@@ -1,6 +1,7 @@
 import "./CommentsList.css";
 import { fetchComments } from "./api";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function CommentsList({ articleID }) {
   const [comments, setComments] = useState([]);
@@ -16,7 +17,12 @@ export default function CommentsList({ articleID }) {
 
   return (
     <main>
-      <h2>Comments List</h2>
+      <nav>
+        <h2 className="nav-item">Comments List</h2>
+        <Link to={`/articles/${articleID}/comments`} className="nav-link">
+          <h2 className="nav-item">Post a Comment</h2>
+        </Link>
+      </nav>
       {isLoading ? (
         <div id="loading">
           <h3>Loading</h3>
