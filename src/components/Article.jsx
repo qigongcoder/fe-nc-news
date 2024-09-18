@@ -40,6 +40,7 @@ export const Article = () => {
                 <p>{article.body}</p>
                 <p>author: {article.author} </p>
                 <p>topc: {article.topic}</p>
+                <p>votes: {article.votes}</p>
               </div>
             </div>
           </div>
