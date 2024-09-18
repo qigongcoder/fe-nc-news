@@ -1,5 +1,6 @@
 import "./Article.css";
 import { fetchArticleByID } from "./api";
+import { changeVote } from "./api";
 import CommentsList from "./CommentsList";
 import PostComment from "./PostComment";
 import { useEffect, useState } from "react";
@@ -18,6 +19,14 @@ export const Article = () => {
       setIsLoading(false);
     });
   }, []);
+
+  const voteFunction = (vote) => {
+    setIsLoading(true);
+    setArticle({ ...article, votes: article.votes + vote });
+    changeVote(articleID, { inc_votes: vote }).then((response) => {
+      setIsLoading(false);
+    });
+  };
 
   return (
     <main>
@@ -40,6 +49,9 @@ export const Article = () => {
                 <p>{article.body}</p>
                 <p>author: {article.author} </p>
                 <p>topc: {article.topic}</p>
+                <p>votes: {article.votes}</p>
+                <button onClick={() => voteFunction(1)}>Up Vote</button>
+                <button onClick={() => voteFunction(-1)}>Down Vote</button>
               </div>
             </div>
           </div>

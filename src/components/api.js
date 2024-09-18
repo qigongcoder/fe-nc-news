@@ -27,7 +27,6 @@ export const fetchComments = (article_id) => {
 };
 
 export const postComment = (article_id, postData) => {
-  console.log(postData, "<--post data from postComment");
   return NewsApi.post(`/articles/${article_id}/comments`, postData)
     .then(({ data }) => {
       console.log("success from api.js");
@@ -35,6 +34,17 @@ export const postComment = (article_id, postData) => {
     })
     .catch((error) => {
       console.log("Error submitting post:", error);
+      alert("Failed submit item, please try again.");
+    });
+};
+
+export const changeVote = (article_id, voteData) => {
+  return NewsApi.patch(`/articles/${article_id}/`, voteData)
+    .then(({ data }) => {
+      return data;
+    })
+    .catch((error) => {
+      console.log("Error submitting changing vote", error);
       alert("Failed submit item, please try again.");
     });
 };
