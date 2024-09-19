@@ -37,14 +37,9 @@ export const postComment = (article_id, postData) => {
 };
 
 export const changeVote = (article_id, voteData) => {
-  return NewsApi.patch(`/articles/${article_id}/`, voteData)
-    .then(({ data }) => {
-      return data;
-    })
-    .catch((error) => {
-      console.log("Error submitting changing vote", error);
-      alert("Failed submit item, please try again.");
-    });
+  return NewsApi.patch(`/articles/${article_id}/`, voteData).then(() => {
+    return;
+  });
 };
 
 export const deleteComment = (comment_id) => {

@@ -28,11 +28,13 @@ export const Article = () => {
   }, []);
 
   const voteFunction = (vote) => {
-    setIsLoading(true);
     setArticle({ ...article, votes: article.votes + vote });
-    changeVote(articleID, { inc_votes: vote }).then((response) => {
-      setIsLoading(false);
-    });
+    changeVote(articleID, { inc_votes: vote })
+      .then(() => {})
+      .catch(() => {
+        alert("Failed to change vote, please try again.");
+        setArticle({ ...article, votes: article.votes });
+      });
   };
 
   return (
