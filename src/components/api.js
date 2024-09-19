@@ -43,12 +43,7 @@ export const changeVote = (article_id, voteData) => {
 };
 
 export const deleteComment = (comment_id) => {
-  return NewsApi.delete(`/comments/${comment_id}`)
-    .then(() => {
-      return;
-    })
-    .catch((error) => {
-      console.log("Error from deletecomment:", error);
-      alert("The followin error occured:", body.message);
-    });
+  return NewsApi.delete(`/comments/${comment_id}`).then(() => {
+    return;
+  });
 };

@@ -25,7 +25,7 @@ export default function CommentsList({ articleID }) {
         setComments(newCommentsList);
       })
       .catch((error) => {
-        alert("There an error deleting your comment: ", error.message);
+        alert("There an error deleting your comment: ");
       });
   };
 
