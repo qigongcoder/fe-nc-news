@@ -16,9 +16,16 @@ export default function CommentsList({ articleID }) {
   }, []);
 
   const handleDeletePush = (comment_id) => {
-    deleteComment(comment_id).then(() => {
-      console.log("comment_deleted");
-    });
+    deleteComment(comment_id)
+      .then(() => {
+        const newCommentsList = comments.filter(
+          (item) => item.comment_id !== comment_id
+        );
+        setComments(newCommentsList);
+      })
+      .catch((error) => {
+        alert("There an error deleting your comment: ", error.message);
+      });
   };
 
   return (
@@ -43,11 +50,15 @@ export default function CommentsList({ articleID }) {
                     <p className="author">author: {comment.author} </p>
                     <p>{comment.body}</p>
                     <p>comment_id : {comment.comment_id}</p>
-                    <button
-                      onClick={() => handleDeletePush(comment.comment_id)}
-                    >
-                      delete me
-                    </button>
+                    {comment.author === "grumpy19" ? (
+                      <button
+                        onClick={() => handleDeletePush(comment.comment_id)}
+                      >
+                        delete me
+                      </button>
+                    ) : (
+                      <></>
+                    )}
                   </div>
                 </li>
               );
