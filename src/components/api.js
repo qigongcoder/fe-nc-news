@@ -10,7 +10,7 @@ export const fetchArticles = (topic) => {
       type: topic,
     },
   }).then(({ data }) => {
-    return data;
+    return data.articles;
   });
 };
 
