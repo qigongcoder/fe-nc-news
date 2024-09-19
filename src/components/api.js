@@ -29,15 +29,11 @@ export const fetchComments = (article_id) => {
 };
 
 export const postComment = (article_id, postData) => {
-  return NewsApi.post(`/articles/${article_id}/comments`, postData)
-    .then(({ data }) => {
-      console.log("success from api.js");
+  return NewsApi.post(`/articles/${article_id}/comments`, postData).then(
+    ({ data }) => {
       return data;
-    })
-    .catch((error) => {
-      console.log("Error submitting post:", error);
-      alert("Failed submit item, please try again.");
-    });
+    }
+  );
 };
 
 export const changeVote = (article_id, voteData) => {
