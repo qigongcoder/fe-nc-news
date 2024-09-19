@@ -8,6 +8,8 @@ export const ArticleList = () => {
   const [isLoadingArticles, setisLoadingArticles] = useState(false);
   const [isLoadingTopics, setisLoadingTopics] = useState(false);
   const [topics, setTopics] = useState([]);
+  const [sortAscendDescend, setSortAscendDescend] = useState(true);
+  const [sortTopic, setSortTopic] = useState("");
   const navigate = useNavigate();
 
   const { topic } = useParams();
@@ -26,19 +28,48 @@ export const ArticleList = () => {
 
   useEffect(() => {
     setisLoadingArticles(true);
-    fetchArticles().then((data) => {
+    fetchArticles().then((articles) => {
       setisLoadingArticles(false);
 
+      /*my backend does not have this api yet, so I'm doing it here*/
+      let sortedArticles = articles;
+
+      if (sortAscendDescend && sortTopic === "comment_count") {
+        sortedArticles = articles.sort(
+          (a, b) => a.comment_count - b.comment_count
+        );
+      } else if (!sortAscendDescend && sortTopic === "comment_count") {
+        sortedArticles = articles.sort(
+          (a, b) => b.comment_count - a.comment_count
+        );
+      }
+
+      if (sortAscendDescend && sortTopic === "votes") {
+        sortedArticles = articles.sort((a, b) => a.votes - b.votes);
+      } else if (!sortAscendDescend && sortTopic === "votes") {
+        sortedArticles = articles.sort((a, b) => b.votes - a.votes);
+      }
+
+      if (sortAscendDescend && sortTopic === "created_at") {
+        sortedArticles = articles.sort((a, b) =>
+          a.created_at.localeCompare(b.created_at)
+        );
+      } else if (!sortAscendDescend && sortTopic === "created_at") {
+        sortedArticles = articles.sort((a, b) =>
+          b.created_at.localeCompare(a.created_at)
+        );
+      }
+      /*my backend does not have the api to do this, so I'm doing this here*/
       if (topic === undefined || topic === "") {
-        setArticles(data.articles);
+        setArticles(sortedArticles);
       } else {
-        const filteredData = data.articles.filter(
+        const filteredData = sortedArticles.filter(
           (object) => object.topic === topic
         );
         setArticles(filteredData);
       }
     });
-  }, [topic]);
+  }, [topic, sortAscendDescend, sortTopic]);
 
   const handleTopicsButton = (topic) => {
     if (topic === "") {
@@ -48,6 +79,14 @@ export const ArticleList = () => {
         navigate(`/${topic}`);
       }
     }
+  };
+
+  const handleAscendDescendButton = () => {
+    setSortAscendDescend((state) => !state);
+  };
+
+  const handleSortTopicdButton = (topicSort) => {
+    setSortTopic(topicSort);
   };
 
   return (
@@ -63,6 +102,19 @@ export const ArticleList = () => {
             </button>
           );
         })}
+        <p>Would you like to sort your articles?</p>
+        <button onClick={() => handleAscendDescendButton()}>
+          Ascending/Descending
+        </button>
+        <button onClick={() => handleSortTopicdButton("comment_count")}>
+          Comment Count
+        </button>
+        <button onClick={() => handleSortTopicdButton("created_at")}>
+          Date
+        </button>
+        <button onClick={() => handleSortTopicdButton("votes")}>
+          Number of Votes
+        </button>
       </div>
       {isLoadingArticles ? (
         <div id="loading">
@@ -91,6 +143,9 @@ export const ArticleList = () => {
                     <h3>{article.title}</h3>
                     <p>author: {article.author} </p>
                     <p>topc: {article.topic}</p>
+                    <p>Comment Count: {article.comment_count}</p>
+                    <p>Votes: {article.votes}</p>
+                    <p>Date: {article.created_at.slice(0, 10)}</p>
                   </div>
                 </li>
               );
