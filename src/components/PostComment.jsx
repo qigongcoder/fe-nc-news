@@ -1,6 +1,6 @@
 import "./PostComment.css";
 import { postComment } from "./api";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -10,10 +10,9 @@ export default function PostComment({ articleID }) {
     username: "grumpy19",
     body: "",
   });
+  const navigate = useNavigate();
 
   const HandleChange = (event) => {
-    console.log(postData);
-    console.log(event.target.value);
     setPostData({
       username: "grumpy19",
       body: event.target.value,
@@ -25,9 +24,8 @@ export default function PostComment({ articleID }) {
     event.preventDefault();
     postComment(article_id, postData)
       .then((data) => {
-        alert(
-          "Post successful, please navigate to the Comments Page to see your post."
-        );
+        alert("Post successful");
+        navigate(`/articles/${articleID}`);
       })
       .catch((error) => {
         console.log("Error submitting post:", error);
