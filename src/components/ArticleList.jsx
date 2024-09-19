@@ -1,24 +1,70 @@
 import "./ArticleList.css";
-import { fetchArticles } from "./api";
+import { fetchArticles, fetchTopics } from "./api";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 
 export const ArticleList = () => {
   const [articles, setArticles] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingArticles, setisLoadingArticles] = useState(false);
+  const [isLoadingTopics, setisLoadingTopics] = useState(false);
+  const [topics, setTopics] = useState([]);
+  const navigate = useNavigate();
+
+  const { topic } = useParams();
 
   useEffect(() => {
-    setIsLoading(true);
-    fetchArticles().then((data) => {
-      setArticles(data.articles);
-      setIsLoading(false);
-    });
+    setisLoadingTopics(true);
+    fetchTopics()
+      .then((topics) => {
+        setTopics(topics);
+        setisLoadingTopics(false);
+      })
+      .catch(() => {
+        alert("error loading topics");
+      });
   }, []);
+
+  useEffect(() => {
+    setisLoadingArticles(true);
+    fetchArticles().then((data) => {
+      setisLoadingArticles(false);
+
+      if (topic === undefined || topic === "") {
+        setArticles(data.articles);
+      } else {
+        const filteredData = data.articles.filter(
+          (object) => object.topic === topic
+        );
+        setArticles(filteredData);
+      }
+    });
+  }, [topic]);
+
+  const handleTopicsButton = (topic) => {
+    if (topic === "") {
+      navigate(`/`);
+    } else {
+      {
+        navigate(`/${topic}`);
+      }
+    }
+  };
 
   return (
     <main>
       <h2>Article List</h2>
-      {isLoading ? (
+      {isLoadingTopics ? <p>loading topics</p> : <p>your topics are</p>}
+      <div id="topic-buttons">
+        <button onClick={() => handleTopicsButton("")}>All topics</button>
+        {topics.map((topic, i) => {
+          return (
+            <button onClick={() => handleTopicsButton(topic.slug)} key={i}>
+              {topic.slug}
+            </button>
+          );
+        })}
+      </div>
+      {isLoadingArticles ? (
         <div id="loading">
           <h3>Loading</h3>
         </div>
