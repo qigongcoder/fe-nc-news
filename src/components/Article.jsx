@@ -4,7 +4,7 @@ import { changeVote } from "./api";
 import CommentsList from "./CommentsList";
 import PostComment from "./PostComment";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 export const Article = () => {
   const [article, setArticle] = useState([]);
@@ -12,12 +12,19 @@ export const Article = () => {
   const { article_id } = useParams();
   const { extension } = useParams();
   const [articleID, setArticleID] = useState(article_id);
+  const navigate = useNavigate();
   useEffect(() => {
     setIsLoading(true);
-    fetchArticleByID(articleID).then((article) => {
-      setArticle(article);
-      setIsLoading(false);
-    });
+    fetchArticleByID(articleID)
+      .then((article) => {
+        setArticle(article);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("error loading article:");
+        navigate("/notfound");
+      });
   }, []);
 
   const voteFunction = (vote) => {

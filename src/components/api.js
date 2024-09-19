@@ -4,12 +4,8 @@ const NewsApi = axios.create({
   baseURL: "https://ncapi.onrender.com/api/",
 });
 
-export const fetchArticles = (topic) => {
-  return NewsApi.get("/articles", {
-    params: {
-      type: topic,
-    },
-  }).then(({ data }) => {
+export const fetchArticles = () => {
+  return NewsApi.get("/articles").then(({ data }) => {
     return data.articles;
   });
 };

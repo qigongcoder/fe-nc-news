@@ -11,7 +11,6 @@ export const ArticleList = () => {
   const [sortAscendDescend, setSortAscendDescend] = useState(true);
   const [sortTopic, setSortTopic] = useState("");
   const navigate = useNavigate();
-
   const { topic } = useParams();
 
   useEffect(() => {
@@ -24,6 +23,19 @@ export const ArticleList = () => {
       .catch(() => {
         alert("error loading topics");
       });
+  }, []);
+
+  useEffect(() => {
+    //topic is extracted from the URL
+    //topics is the list of topics derived from the database
+    if (
+      !(
+        topic === undefined ||
+        topics.map((object) => object.slug).includes(topic)
+      )
+    ) {
+      navigate("/notfound");
+    }
   }, []);
 
   useEffect(() => {
