@@ -17,7 +17,6 @@ export default function PostComment({ articleID }) {
       username: "grumpy19",
       body: event.target.value,
     });
-    //setPostData({ ...postData, [event.target.name]: event.target.value });
   };
 
   const HandleSubmit = (event) => {
@@ -28,7 +27,6 @@ export default function PostComment({ articleID }) {
         navigate(`/articles/${articleID}`);
       })
       .catch((error) => {
-        console.log("Error submitting post:", error);
         alert("Failed submit item, please try again.");
       });
   };

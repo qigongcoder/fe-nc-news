@@ -21,7 +21,6 @@ export const Article = () => {
         setIsLoading(false);
       })
       .catch((error) => {
-        console.log(error);
         alert("error loading article:");
         navigate("/notfound");
       });
