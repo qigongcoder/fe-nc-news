@@ -1,3 +1,7 @@
+#article-wrapper {
+  display: inline-flex;
+}
+
 #article-wrapper .article-card {
   border-style: outset;
   border-width: 7px;
