@@ -1,5 +1,10 @@
+#article-wrapper {
+  display: inline-flex;
+}
+
 #article-wrapper .article-card {
   border-style: outset;
+
   border-width: 7px;
   border-radius: 10px;
   padding: 20px;
@@ -15,7 +20,6 @@
 
 #article-wrapper .item-details {
   width: 70vw;
-  height: 200px;
 }
 
 #article-wrapper .button-container {

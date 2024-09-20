@@ -1,3 +1,13 @@
+nav {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.nav-item {
+  margin: 10px;
+}
+
 #comments-list-wrapper {
   display: inline-flex;
 }
@@ -25,12 +35,4 @@
 #comments-list-wrapper .author {
   font-weight: bold;
   text-decoration: underline;
-}
-
-nav {
-  display: inline-flex;
-}
-
-.nav-item {
-  margin: 10px;
 }
