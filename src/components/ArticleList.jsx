@@ -103,8 +103,8 @@ export const ArticleList = () => {
 
   return (
     <main>
-      <h2>Article List</h2>
-      {isLoadingTopics ? <p>loading topics</p> : <p>your topics are</p>}
+      <h2>Here are our articles</h2>
+      {isLoadingTopics ? <p>loading topics</p> : <p>Choose a topic</p>}
       <div id="topic-buttons">
         <button onClick={() => handleTopicsButton("")}>All topics</button>
         {topics.map((topic, i) => {

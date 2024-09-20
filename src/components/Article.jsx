@@ -38,7 +38,6 @@ export const Article = () => {
 
   return (
     <main>
-      <h2>Article</h2>
       {isLoading ? (
         <div className="loading">
           <h3>Loading</h3>

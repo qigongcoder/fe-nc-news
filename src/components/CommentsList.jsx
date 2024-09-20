@@ -50,7 +50,7 @@ export default function CommentsList({ articleID }) {
                   <div className="item-details">
                     <p className="author">author: {comment.author} </p>
                     <p>{comment.body}</p>
-                    <p>comment_id : {comment.comment_id}</p>
+                    {/*<p>comment_id : {comment.comment_id}</p>*/}
                     {comment.author === "grumpy19" ? (
                       <button
                         onClick={() => handleDeletePush(comment.comment_id)}
