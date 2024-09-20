@@ -1,0 +1,7 @@
+header {
+  display: inline-flex;
+}
+
+header a {
+  text-decoration-thickness: 3px;
+}
