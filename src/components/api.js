@@ -4,12 +4,8 @@ const NewsApi = axios.create({
   baseURL: "https://ncapi.onrender.com/api/",
 });
 
-export const fetchArticles = (topic) => {
-  return NewsApi.get("/articles", {
-    params: {
-      type: topic,
-    },
-  }).then(({ data }) => {
+export const fetchArticles = () => {
+  return NewsApi.get("/articles").then(({ data }) => {
     return data.articles;
   });
 };
@@ -33,35 +29,21 @@ export const fetchComments = (article_id) => {
 };
 
 export const postComment = (article_id, postData) => {
-  return NewsApi.post(`/articles/${article_id}/comments`, postData)
-    .then(({ data }) => {
-      console.log("success from api.js");
+  return NewsApi.post(`/articles/${article_id}/comments`, postData).then(
+    ({ data }) => {
       return data;
-    })
-    .catch((error) => {
-      console.log("Error submitting post:", error);
-      alert("Failed submit item, please try again.");
-    });
+    }
+  );
 };
 
 export const changeVote = (article_id, voteData) => {
-  return NewsApi.patch(`/articles/${article_id}/`, voteData)
-    .then(({ data }) => {
-      return data;
-    })
-    .catch((error) => {
-      console.log("Error submitting changing vote", error);
-      alert("Failed submit item, please try again.");
-    });
+  return NewsApi.patch(`/articles/${article_id}/`, voteData).then(() => {
+    return;
+  });
 };
 
 export const deleteComment = (comment_id) => {
-  return NewsApi.delete(`/comments/${comment_id}`)
-    .then(() => {
-      return;
-    })
-    .catch((error) => {
-      console.log("Error from deletecomment:", error);
-      alert("The followin error occured:", body.message);
-    });
+  return NewsApi.delete(`/comments/${comment_id}`).then(() => {
+    return;
+  });
 };

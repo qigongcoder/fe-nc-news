@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { Header } from "./components/Header";
 import { ArticleList } from "./components/ArticleList";
 import { Article } from "./components/Article";
+import { NotFound } from "./components/NotFound";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           path="/articles/:article_id/:extension"
           element={<Article />}
         ></Route>
+        <Route path="/notfound" element={<NotFound />} />
       </Routes>
     </div>
   );

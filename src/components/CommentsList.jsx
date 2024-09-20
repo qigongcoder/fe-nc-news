@@ -21,10 +21,11 @@ export default function CommentsList({ articleID }) {
         const newCommentsList = comments.filter(
           (item) => item.comment_id !== comment_id
         );
+        alert("Your comment has been deleted");
         setComments(newCommentsList);
       })
       .catch((error) => {
-        alert("There an error deleting your comment: ", error.message);
+        alert("There an error deleting your comment: ");
       });
   };
 
