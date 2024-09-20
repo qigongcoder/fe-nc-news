@@ -143,21 +143,21 @@ export const ArticleList = () => {
                     src={article.article_img_url}
                     alt={article.title}
                   ></img>
-                  <div className="link-container">
-                    <Link
-                      to={`/articles/${article.article_id}`}
-                      className="nav-link"
-                    >
-                      To Article
-                    </Link>
-                  </div>
+                  <div className="link-container"></div>
                   <div className="item-details">
-                    <h3>{article.title}</h3>
-                    <p>author: {article.author} </p>
+                    <h3>
+                      <Link
+                        to={`/articles/${article.article_id}`}
+                        className="nav-link"
+                      >
+                        {article.title}
+                      </Link>
+                    </h3>
+                    <p>Date: {article.created_at.slice(0, 10)}</p>
                     <p>topc: {article.topic}</p>
+                    <p>author: {article.author} </p>
                     <p>Comment Count: {article.comment_count}</p>
                     <p>Votes: {article.votes}</p>
-                    <p>Date: {article.created_at.slice(0, 10)}</p>
                   </div>
                 </li>
               );
